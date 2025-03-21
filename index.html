@@ -61,7 +61,7 @@
     <script>
         async function fetchBookmarks() {
             try {
-                const response = await fetch('bookmarks.json');
+                const response = await fetch('./bookmarks.json');
                 const bookmarks = await response.json();
                 renderBookmarks(bookmarks[0], document.getElementById('bookmarks'));
             } catch (error) {
