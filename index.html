@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>我的书签</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .bookmark-folder {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .bookmark-item {
+            margin: 5px 0;
+        }
+
+        .bookmark-item a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+
+        .bookmark-item a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            color: #24292e;
+            border-bottom: 1px solid #e1e4e8;
+            padding-bottom: 10px;
+        }
+
+        .folder-name {
+            color: #24292e;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>我的书签</h1>
+        <div id="bookmarks"></div>
+    </div>
+
+    <script>
+        async function fetchBookmarks() {
+            try {
+                const response = await fetch('bookmarks.json');
+                const bookmarks = await response.json();
+                renderBookmarks(bookmarks[0], document.getElementById('bookmarks'));
+            } catch (error) {
+                console.error('加载书签失败:', error);
+                document.getElementById('bookmarks').innerHTML = '加载书签失败，请稍后再试';
+            }
+        }
+
+        function renderBookmarks(node, container) {
+            if (node.children) {
+                if (node.title) {
+                    const folderTitle = document.createElement('div');
+                    folderTitle.className = 'folder-name';
+                    folderTitle.textContent = node.title;
+                    container.appendChild(folderTitle);
+                }
+
+                const folder = document.createElement('div');
+                folder.className = 'bookmark-folder';
+                container.appendChild(folder);
+
+                node.children.forEach(child => renderBookmarks(child, folder));
+            } else if (node.url) {
+                const item = document.createElement('div');
+                item.className = 'bookmark-item';
+                const link = document.createElement('a');
+                link.href = node.url;
+                link.textContent = node.title;
+                link.target = '_blank';
+                item.appendChild(link);
+                container.appendChild(item);
+            }
+        }
+
+        // 页面加载完成后获取书签数据
+        document.addEventListener('DOMContentLoaded', fetchBookmarks);
+    </script>
+</body>
+
+</html>
