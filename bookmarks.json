@@ -674,7 +674,7 @@
           }
         ],
         "dateAdded": 1722316793481,
-        "dateGroupModified": 1739960406059,
+        "dateGroupModified": 1742538772444,
         "id": "1",
         "index": 0,
         "parentId": "0",
@@ -697,10 +697,18 @@
             "parentId": "8",
             "title": "前端 - 【红隼书签】自定义光影、自定义背景、亮度和主题功能 - 个人文章 - SegmentFault 思否",
             "url": "https://segmentfault.com/a/1190000043714992"
+          },
+          {
+            "dateAdded": 1742538772444,
+            "id": "129",
+            "index": 2,
+            "parentId": "8",
+            "title": "我的书签",
+            "url": "https://xuzhoulong.github.io/bookmark/"
           }
         ],
         "dateAdded": 1722316793481,
-        "dateGroupModified": 1726294330262,
+        "dateGroupModified": 1742538776092,
         "id": "8",
         "index": 1,
         "parentId": "0",
